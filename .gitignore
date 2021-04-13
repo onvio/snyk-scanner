@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+snyk_report.*
+snyk-result.json
+snyk-error.log
