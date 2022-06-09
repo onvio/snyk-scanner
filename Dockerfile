@@ -1,15 +1,12 @@
-FROM nikolaik/python-nodejs
+FROM snyk/snyk:node-14
 
 ADD . /opt/snyk
 WORKDIR /opt/snyk
 
-RUN chmod +x scan.py && \
-    python -m pip install -r requirements.txt
-
 # install snyk-to-html
-RUN npm install snyk-to-html -g
+RUN npm install snyk-to-html -g \
+    && chmod +x /opt/snyk/entrypoint.sh
 
 VOLUME /var/reports
-VOLUME /var/src
 
-ENTRYPOINT ["python"]
+ENTRYPOINT ["/opt/snyk/entrypoint.sh"]
